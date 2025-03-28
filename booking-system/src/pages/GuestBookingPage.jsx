@@ -439,17 +439,19 @@ const GuestBookingPage = () => {
   `;
 
   const DayBox = styled.div`
-    background: ${props => props.isSunday ? "#242424" : "#3a3a3a"};
-    color: ${props => props.isSunday ? "#666666" : "white"};
+    background: ${(props) => (props.isSunday ? "#242424" : "#3a3a3a")};
+    color: ${(props) => (props.isSunday ? "#666666" : "white")};
     padding: 0.8rem 0.5rem;
     text-align: center;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.9rem;
-    opacity: ${props => props.isSunday ? 0.6 : 1};
+    opacity: ${(props) => (props.isSunday ? 0.6 : 1)};
     position: relative;
 
-    ${props => props.isSunday && `
+    ${(props) =>
+      props.isSunday &&
+      `
       &:after {
         content: '(Closed)';
         display: block;
@@ -461,12 +463,12 @@ const GuestBookingPage = () => {
   `;
 
   const DayBoxes = () => {
-    const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    
+    const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
     return (
       <DayBoxContainer>
         {days.map((day, index) => (
-          <DayBox key={day} isSunday={day === 'SUN'}>
+          <DayBox key={day} isSunday={day === "SUN"}>
             {day}
           </DayBox>
         ))}
@@ -500,7 +502,7 @@ const GuestBookingPage = () => {
                   tileDisabled={tileDisabled}
                   calendarType="iso8601"
                   formatShortWeekday={(locale, date) =>
-                    ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'][
+                    ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][
                       date.getDay() === 0 ? 6 : date.getDay() - 1
                     ]
                   }
