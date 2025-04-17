@@ -8,7 +8,7 @@ import {
 import { auth } from "../../config/firebase";
 
 class AuthService {
-  // Sign up with email and password
+  //Sign up with email and password
   async register(email, password, displayName) {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -16,7 +16,7 @@ class AuthService {
         email,
         password
       );
-      // Update the user's profile with display name
+      //Update the user's profile with display name
       await updateProfile(userCredential.user, { displayName });
       return userCredential.user;
     } catch (error) {
@@ -24,7 +24,7 @@ class AuthService {
     }
   }
 
-  // Sign in with email and password
+  //Sign in with email and password
   async login(email, password) {
     try {
       const userCredential = await signInWithEmailAndPassword(

@@ -16,6 +16,15 @@ const LandingPage = () => {
     }
   };
 
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+
   const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -105,12 +114,16 @@ const LandingPage = () => {
             Book As Guest
           </Button>
 
-          <Button to="/login" className="secondary">
+          <Button to="/login" className="secondary"
+          onClick={handleLoginClick}
+          >
             Login To Book
           </Button>
 
           <Text>Not Registered yet?</Text>
-          <Button to="/signup" className="signup">
+          <Button to="/signup" className="signup"
+          onClick={handleSignUpClick}
+          >
             Sign Up Now
           </Button>
 

@@ -90,7 +90,6 @@ const GuestBookingPage = () => {
     background-color: #1a1a1a;
     color: white;
     position: relative;
-
     @media (max-width: 768px) {
       padding: 1rem;
     }

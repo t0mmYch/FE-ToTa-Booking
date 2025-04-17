@@ -10,8 +10,10 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 import GuestBookingPage from "./pages/GuestBookingPage";
 import GuestBookingDetailsPage from "./pages/GuestBookingDetailsPage";
+import UserBookingPage from "./pages/UserBookingPage";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import GlobalStyles from "./styles/GlobalStyles";
 
@@ -28,13 +30,15 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/guest-booking" element={<GuestBookingPage />} />
         <Route
           path="/guest-booking-details"
           element={<GuestBookingDetailsPage />}
         />
+        <Route path="/user-booking" element={<UserBookingPage />} />
         <Route path="/booking-confirmation" element={<BookingConfirmationPage />} />
-        <Route path="/signup" element={<div>Sign Up Page (Coming Soon)</div>} />
+        <Route path="/signup" element={<div>Sign Up Page </div>} />
       </Routes>
     </AnimatePresence>
   );

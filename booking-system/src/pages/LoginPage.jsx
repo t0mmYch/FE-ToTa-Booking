@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import PageTransition from "../components/PageTransition";
 
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
