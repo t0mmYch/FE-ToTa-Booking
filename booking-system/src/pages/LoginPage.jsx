@@ -12,7 +12,13 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
    
-    navigate("/booking");
+    navigate("/booking")
+    navigate('/login-user-booking', {
+      state: {
+        username: email.split('@')[0], //Use the part before @ as username
+        email: email
+      }
+    });
   };
 
   const slideUp = keyframes`

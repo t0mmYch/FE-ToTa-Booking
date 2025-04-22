@@ -33,7 +33,7 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/guest-booking" element={<GuestBookingPage />} />
-        <Route path="/login-user-booiking" element={<LoginUserBookingPage />} />
+        <Route path="/login-user-booking" element={<LoginUserBookingPage />} />
         <Route path="/guest-booking-details" element={<GuestBookingDetailsPage />} />
         <Route path="/user-booking" element={<UserBookingPage />} />
         <Route path="/booking-confirmation" element={<BookingConfirmationPage />} />
