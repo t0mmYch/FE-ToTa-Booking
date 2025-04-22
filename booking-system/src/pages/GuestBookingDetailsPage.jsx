@@ -1,129 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import PageTransition from '../components/PageTransition';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import PageTransition from "../components/PageTransition";
 
 const GuestBookingDetailsPage = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedDate, selectedTime } = location.state || {};
-
-  // Redirect if no date/time selected
-  useEffect(() => {
-    if (!selectedDate || !selectedTime) {
-      navigate('/guest-booking');
-    }
-  }, [selectedDate, selectedTime, navigate]);
-
-  const [searchQuery, setSearchQuery] = useState('');
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: ''
+    fullName: "",
+    email: "",
+    phone: "",
   });
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validateForm = () => {
-    const newErrors = {};
-    
-    // Full Name validation
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
-    } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName = 'Name must be at least 2 characters long';
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Phone number validation
-    const phoneRegex = /^\+?[0-9]{10,15}$/;
-    if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = 'Phone number is required';
-    } else if (!phoneRegex.test(formData.phoneNumber.replace(/\s+/g, ''))) {
-      newErrors.phoneNumber = 'Please enter a valid phone number';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
   };
 
-  const handleConfirmBooking = async () => {
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Navigate to confirmation page with booking details
-      navigate('/booking-confirmation', {
-        state: {
-          selectedDate,
-          selectedTime,
-          formData
-        }
-      });
-    } catch (error) {
-      console.error('Booking failed:', error);
-      setErrors(prev => ({
-        ...prev,
-        submit: 'Failed to confirm booking. Please try again.'
-      }));
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/booking-confirmation", {
+      state: {
+        ...formData,
+        selectedDate,
+        selectedTime,
+      },
+    });
   };
 
   return (
     <PageTransition>
       <PageContainer>
-        <BackButton to="/guest-booking">Back</BackButton>
         <ContentContainer>
-          <SearchContainer>
-            <SearchInput
-              type="text"
-              placeholder="Your Barber's truly (one shop)"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </SearchContainer>
+          <SearchBar placeholder="Your Barber's truly (one shop)" />
 
-          <BookingFormContainer>
-            <BookingLabel>Guest's Booking:</BookingLabel>
-            <BookingForm>
+          <BookingSection>
+            <BookingTitle>Guest's Booking:</BookingTitle>
+            <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label>Full Name:</Label>
                 <Input
                   type="text"
                   name="fullName"
+                  placeholder="Enter your full name"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  placeholder="Enter your full name"
-                  error={errors.fullName}
+                  required
                 />
-                {errors.fullName && <ErrorMessage>{errors.fullName}</ErrorMessage>}
               </FormGroup>
 
               <FormGroup>
@@ -131,51 +58,36 @@ const GuestBookingDetailsPage = () => {
                 <Input
                   type="email"
                   name="email"
+                  placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Enter your email"
-                  error={errors.email}
+                  required
                 />
-                {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
               </FormGroup>
 
               <FormGroup>
                 <Label>Phone no:</Label>
                 <Input
                   type="tel"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
+                  name="phone"
                   placeholder="Enter your phone number"
-                  error={errors.phoneNumber}
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
                 />
-                {errors.phoneNumber && <ErrorMessage>{errors.phoneNumber}</ErrorMessage>}
               </FormGroup>
 
-              <BookingInfo>
-                {selectedDate && (
-                  <InfoText>{new Date(selectedDate).toLocaleDateString('en-US', { 
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long'
-                  })}</InfoText>
-                )}
-              </BookingInfo>
+              <BookingDetails>
+                <DetailText>Thursday, April 24</DetailText>
+                <DetailText>Time: 11:00</DetailText>
+              </BookingDetails>
 
-              <BookingInfo>
-                <InfoText>Time: {selectedTime}</InfoText>
-              </BookingInfo>
-
-              {errors.submit && <ErrorMessage center>{errors.submit}</ErrorMessage>}
-
-              <ConfirmButton 
-                onClick={handleConfirmBooking}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Confirming...' : 'Confirm Booking'}
-              </ConfirmButton>
-            </BookingForm>
-          </BookingFormContainer>
+              <ButtonContainer>
+                <BackButton onClick={() => navigate(-1)}>Back</BackButton>
+                <SubmitButton type="submit">Continue</SubmitButton>
+              </ButtonContainer>
+            </Form>
+          </BookingSection>
         </ContentContainer>
       </PageContainer>
     </PageTransition>
@@ -183,69 +95,93 @@ const GuestBookingDetailsPage = () => {
 };
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
   min-height: 100vh;
   background-color: #1a1a1a;
   color: white;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  color: black;
 
   @media (max-width: 768px) {
     padding: 1rem;
   }
 `;
 
-const ContentContainer = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 2rem;
+const Logo = styled.h1`
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
 `;
 
-const SearchContainer = styled.div`
-  width: 100%;
-  padding: 1rem;
-  background: #ffffff14;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 1rem;
-  border: none;
+const LoginButton = styled.button`
+  padding: 0.5rem 1.5rem;
+  border: 2px solid black;
   border-radius: 4px;
-  background: white;
+  background: transparent;
+  color: black;
   font-size: 1rem;
+  cursor: pointer;
+`;
+
+const ContentContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+const SearchBar = styled.input`
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 1rem;
+
   &::placeholder {
     color: #666;
   }
 `;
 
-const BookingFormContainer = styled.div`
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
+const BookingSection = styled.div`
+  width: 100%;
+  max-width: 500px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
+    padding: 1.5rem;
+    width: 100%;
   }
 `;
 
-const BookingLabel = styled.h2`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-  min-width: 200px;
+const BookingTitle = styled.h2`
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: white;
 `;
 
-const BookingForm = styled.div`
-  flex-grow: 1;
-  background: #ffffff14;
-  border-radius: 8px;
-  padding: 2rem;
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -258,80 +194,72 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  color: white;
 `;
 
 const Input = styled.input`
-  padding: 0.8rem;
-  border: 2px solid ${props => props.error ? '#e74c3c' : 'transparent'};
-  border-radius: 4px;
-  background: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
   font-size: 1rem;
   width: 100%;
-  transition: border-color 0.3s ease;
 
-  &:focus {
-    outline: none;
-    border-color: ${props => props.error ? '#e74c3c' : '#4CAF50'};
+  &::placeholder {
+    color: #666;
   }
 `;
 
-const BookingInfo = styled.div`
+const BookingDetails = styled.div`
+  margin-top: 1rem;
   padding: 1rem;
-  background: #ffffff0a;
-  border-radius: 4px;
+  background-color: #333;
+  border-radius: 8px;
 `;
 
-const InfoText = styled.p`
-  margin: 0;
+const DetailText = styled.p`
+  margin: 0.5rem 0;
   font-size: 1.1rem;
-  font-weight: 500;
-`;
-
-const ErrorMessage = styled.span`
-  color: #e74c3c;
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-  text-align: ${props => props.center ? 'center' : 'left'};
-  display: block;
-`;
-
-const ConfirmButton = styled.button`
-  padding: 1rem;
-  background-color: #4CAF50;
   color: white;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const BaseButton = styled.button`
+  padding: 1rem;
   border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: ${props => props.disabled ? 0.7 : 1};
-  pointer-events: ${props => props.disabled ? 'none' : 'auto'};
+  transition: transform 0.2s;
+  flex: 1;
 
   &:hover {
-    background-color: #45a049;
-    transform: ${props => props.disabled ? 'none' : 'translateY(-2px)'};
-  }
-`;
-
-const BackButton = styled(Link)`
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  padding: 0.8rem 1.5rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  z-index: 10;
-
-  &:hover {
-    background-color: #45a049;
     transform: translateY(-2px);
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const BackButton = styled(BaseButton)`
+  background-color: #4caf50;
+  color: white;
+`;
+
+const SubmitButton = styled(BaseButton)`
+  background-color: #4caf50;
+  color: white;
 `;
 
 export default GuestBookingDetailsPage; 

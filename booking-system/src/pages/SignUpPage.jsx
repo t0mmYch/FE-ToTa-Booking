@@ -34,7 +34,7 @@ const SignUpPage = () => {
       //API call to register the user
       //navigate to the booking page
       navigate("/user-booking", {
-        state: { username: formData.username }
+        state: { username: formData.username },
       });
     } catch (err) {
       setError("Failed to create account. Please try again.");
