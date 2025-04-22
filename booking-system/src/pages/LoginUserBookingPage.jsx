@@ -6,7 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import { format, isSunday, isToday, parse, isBefore } from "date-fns";
 import PageTransition from "../components/PageTransition";
 
-const UserBookingPage = () => {
+const LoginUserBookingPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const username = location.state?.username || "User";
@@ -69,7 +69,7 @@ const UserBookingPage = () => {
       <PageContainer>
         <BackButton to="/">Back</BackButton>
         <ContentContainer>
-          <WelcomeTitle>Welcome {username}!</WelcomeTitle>
+          <WelcomeTitle>Welcome, {username}!</WelcomeTitle>
           <SearchContainer>
             <SearchInput
               type="text"
@@ -156,7 +156,6 @@ const UserBookingPage = () => {
     </PageTransition>
   );
 };
-
 
 // Styled Components
 const PageContainer = styled.div`
@@ -364,77 +363,24 @@ const CalendarContainer = styled.div`
   background-color: #2a2a2a;
   border-radius: 12px;
   padding: 1.5rem;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 
   .react-calendar {
     width: 100%;
     background-color: #2a2a2a;
     border: none;
     color: white;
-    font-family: inherit;
-    line-height: 1.5;
-    padding: 1rem;
-
-    abbr {
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .react-calendar__navigation {
-      height: 48px;
-      margin-bottom: 1rem;
-
-      button {
-        min-width: 48px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        background: none;
-
-        &:enabled:hover,
-        &:enabled:focus {
-          background-color: #333;
-        }
-
-        &[disabled] {
-          background-color: transparent;
-          color: #666;
-        }
-      }
-    }
-
-    .react-calendar__month-view__weekdays {
-      color: #4caf50;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-
-      abbr {
-        font-weight: bold;
-        font-size: 0.9rem;
-      }
-    }
 
     .react-calendar__tile {
-      height: 48px;
-      font-size: 1.1rem;
-      font-weight: 600;
       color: white;
-      padding: 1rem 0.5rem;
-
       &:enabled:hover,
       &:enabled:focus {
         background-color: #4caf50;
       }
       &--active {
-        background-color: #4caf50 !important;
-        font-weight: bold;
+        background-color: #4caf50;
       }
       &--now {
         background-color: #333;
-        font-weight: bold;
       }
       &:disabled {
         background-color: #1a1a1a;
@@ -442,42 +388,20 @@ const CalendarContainer = styled.div`
       }
     }
 
-    @media (max-width: 768px) {
-      padding: 0.5rem;
-
-      .react-calendar__navigation {
-        height: 40px;
-        
-        button {
-          font-size: 1rem;
-          min-width: 40px;
-        }
-      }
-
-      .react-calendar__month-view__weekdays {
-        font-size: 0.9rem;
-
-        abbr {
-          font-size: 0.8rem;
-        }
-      }
-
-      .react-calendar__tile {
-        height: 40px;
-        font-size: 1rem;
-        padding: 0.8rem 0.4rem;
+    .react-calendar__navigation button {
+      color: white;
+      &:enabled:hover,
+      &:enabled:focus {
+        background-color: #333;
       }
     }
 
-    @media (max-width: 480px) {
-      .react-calendar__tile {
-        height: 36px;
-        font-size: 0.9rem;
-        padding: 0.6rem 0.3rem;
-      }
+    .react-calendar__month-view__weekdays {
+      color: #4caf50;
     }
   }
 `;
 
 
-export default UserBookingPage; 
+
+export default LoginUserBookingPage;

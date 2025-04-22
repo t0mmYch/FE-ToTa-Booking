@@ -16,6 +16,7 @@ import GuestBookingDetailsPage from "./pages/GuestBookingDetailsPage";
 import UserBookingPage from "./pages/UserBookingPage";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import GlobalStyles from "./styles/GlobalStyles";
+import LoginUserBookingPage from "./pages/LoginUserBookingPage";
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -32,13 +33,10 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/guest-booking" element={<GuestBookingPage />} />
-        <Route
-          path="/guest-booking-details"
-          element={<GuestBookingDetailsPage />}
-        />
+        <Route path="/login-user-booiking" element={<LoginUserBookingPage />} />
+        <Route path="/guest-booking-details" element={<GuestBookingDetailsPage />} />
         <Route path="/user-booking" element={<UserBookingPage />} />
         <Route path="/booking-confirmation" element={<BookingConfirmationPage />} />
-        <Route path="/signup" element={<div>Sign Up Page </div>} />
       </Routes>
     </AnimatePresence>
   );

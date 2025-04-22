@@ -159,11 +159,6 @@ const ConfirmationText = styled.p`
   return (
     <PageTransition>
       <PageContainer>
-        <Header>
-          <Logo>ToTa Booking</Logo>
-          <UserName>Guest's Booking</UserName>
-        </Header>
-
         <SearchContainer>
           <SearchText>Your Barber's truly (one shop)</SearchText>
         </SearchContainer>

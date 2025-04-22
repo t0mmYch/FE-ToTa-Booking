@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const Navbar = () => {
+  return (
+    <NavbarContainer>
+      <Logo to="/">ToTa Booking</Logo>
+      <LoginButton to="/login">Login</LoginButton>
+    </NavbarContainer>
+  );
+};
+
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -37,13 +46,6 @@ const LoginButton = styled(Link)`
   }
 `;
 
-const Navbar = () => {
-  return (
-    <NavbarContainer>
-      <Logo to="/">ToTa Booking</Logo>
-      <LoginButton to="/login">Login</LoginButton>
-    </NavbarContainer>
-  );
-};
+
 
 export default Navbar; 
