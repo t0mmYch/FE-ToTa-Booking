@@ -199,6 +199,7 @@ const TimeSlot = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   opacity: ${props => props.disabled ? 0.5 : 1};
+  font-weight: 600;
 
   &:hover:not(:disabled) {
     border-color: #4caf50;
@@ -208,6 +209,11 @@ const TimeSlot = styled.button`
   &:disabled {
     cursor: not-allowed;
     transform: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -273,6 +279,12 @@ const TimeSlotContainer = styled.div`
   background-color: #2a2a2a;
   padding: 1.5rem;
   border-radius: 12px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    gap: 0.6rem;
+  }
 `;
 
 const BookingDetailsCard = styled.div`
@@ -280,6 +292,10 @@ const BookingDetailsCard = styled.div`
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const DateHeader = styled.h2`
