@@ -106,37 +106,32 @@ const GuestBookingPage = () => {
 
     @media (max-width: 768px) {
       margin-top: 1rem;
-      padding-bottom: 7rem;
+      padding-bottom: 4.5rem;
     }
   `;
 
   const MainContent = styled.div`
     display: flex;
+    flex-direction: column;
     gap: 2rem;
-    width: 100%;
 
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 1rem;
+    @media (min-width: 768px) {
+      flex-direction: row;
     }
   `;
 
   const LeftSection = styled.div`
-    width: 40%;
-    flex-shrink: 0;
-
-    @media (max-width: 1024px) {
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
   `;
 
   const RightSection = styled.div`
-    flex-grow: 1;
-
-    @media (max-width: 1024px) {
-      width: 100%;
-      margin-top: -1rem;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
   `;
 
   const SearchContainer = styled.div`
@@ -160,89 +155,119 @@ const GuestBookingPage = () => {
   `;
 
   const CalendarContainer = styled.div`
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
     .react-calendar {
       width: 100%;
-      background: #2a2a2a;
+      background-color: #2a2a2a;
       border: none;
-      border-radius: 8px;
-      padding: 1rem;
       color: white;
+      font-family: inherit;
+      line-height: 1.5;
+      padding: 1rem;
+
+      abbr {
+        text-decoration: none;
+        font-weight: bold;
+      }
 
       .react-calendar__navigation {
+        height: 48px;
         margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-
-        .react-calendar__navigation__label {
-          font-weight: bold;
-          font-size: 1.2rem;
-          text-transform: capitalize;
-          flex-grow: 1;
-          text-align: center;
-        }
 
         button {
-          color: white;
-          background: transparent;
-          border: none;
-          padding: 0.5rem;
+          min-width: 48px;
+          font-size: 1.2rem;
           font-weight: bold;
+          color: white;
+          background: none;
 
           &:enabled:hover,
           &:enabled:focus {
-            background-color: #ffffff14;
+            background-color: #333;
           }
 
-          &:disabled {
-            color: #ffffff80;
+          &[disabled] {
+            background-color: transparent;
+            color: #666;
           }
         }
       }
 
       .react-calendar__month-view__weekdays {
-        text-align: center;
-        text-transform: uppercase;
+        color: #4caf50;
+        font-size: 1rem;
         font-weight: bold;
-        font-size: 0.8em;
-        padding: 0.5rem 0;
+        text-transform: uppercase;
 
         abbr {
-          text-decoration: none;
-          color: #4caf50;
+          font-weight: bold;
+          font-size: 0.9rem;
         }
       }
 
-      .react-calendar__month-view__days {
-        display: grid !important;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 4px;
-      }
-
       .react-calendar__tile {
-        padding: 1.5rem 0.5rem;
+        height: 48px;
         font-size: 1.1rem;
+        font-weight: 600;
         color: white;
-        background: #3a3a3a;
-        border-radius: 4px;
-        margin: 2px;
-        max-width: initial !important;
+        padding: 1rem 0.5rem;
 
         &:enabled:hover,
         &:enabled:focus {
           background-color: #4caf50;
-          color: white;
         }
         &--active {
           background-color: #4caf50 !important;
-          color: white !important;
+          font-weight: bold;
         }
-        &.react-calendar__month-view__days__day--neighboringMonth {
-          background-color: #242424;
-          color: #ffffff80;
+        &--now {
+          background-color: #333;
+          font-weight: bold;
         }
         &:disabled {
-          background-color: #242424;
-          color: #ffffff80;
+          background-color: #1a1a1a;
+          color: #666;
+        }
+      }
+
+      @media (max-width: 768px) {
+        padding: 0.5rem;
+
+        .react-calendar__navigation {
+          height: 40px;
+          
+          button {
+            font-size: 1rem;
+            min-width: 40px;
+          }
+        }
+
+        .react-calendar__month-view__weekdays {
+          font-size: 0.9rem;
+
+          abbr {
+            font-size: 0.8rem;
+          }
+        }
+
+        .react-calendar__tile {
+          height: 40px;
+          font-size: 1rem;
+          padding: 0.8rem 0.4rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .react-calendar__tile {
+          height: 36px;
+          font-size: 0.9rem;
+          padding: 0.6rem 0.3rem;
         }
       }
     }
@@ -250,30 +275,43 @@ const GuestBookingPage = () => {
 
   const TimeSlotContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    background: #ffffff14;
-    border-radius: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.8rem;
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      padding: 1rem;
+      gap: 0.6rem;
+    }
   `;
 
   const TimeSlot = styled.button`
     padding: 0.8rem;
-    background: ${(props) => {
-      if (props.disabled) return "#666666";
-      if (props.selected) return "#4CAF50";
-      return "transparent";
-    }};
-    border: 2px solid ${(props) => (props.disabled ? "#666666" : "#4CAF50")};
-    border-radius: 4px;
-    color: ${(props) => (props.disabled ? "#999999" : "white")};
-    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-    opacity: ${(props) => (props.disabled ? 0.6 : 1)};
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    border: 1px solid ${props => props.selected ? '#4caf50' : '#333'};
+    background-color: ${props => props.selected ? '#4caf50' : 'transparent'};
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: ${props => props.disabled ? 0.5 : 1};
+    font-weight: 600;
 
-    &:hover {
-      background: ${(props) => (props.disabled ? "#666666" : "#4CAF50")};
-      transform: ${(props) => (props.disabled ? "none" : "translateY(-2px)")};
+    &:hover:not(:disabled) {
+      border-color: #4caf50;
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0.6rem;
+      font-size: 0.9rem;
     }
   `;
 
@@ -289,10 +327,30 @@ const GuestBookingPage = () => {
     text-decoration: none;
     transition: all 0.3s ease;
     z-index: 10;
+    opacity: 0.5;
+    width: 150px;
+    text-align: center;
 
     &:hover {
       background-color: #45a049;
       transform: translateY(-2px);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      bottom: 1rem;
+      left: 1rem;
+      width: calc(50% - 1.5rem);
+      text-align: center;
+      border-radius: 8px;
+      font-size: 1rem;
+      padding: 1rem;
+      transform: none;
+
+      &:hover {
+        transform: translateY(-2px);
+        background-color: #45a049;
+      }
     }
   `;
 
@@ -314,14 +372,14 @@ const GuestBookingPage = () => {
   `;
 
   const BookingDetailsCard = styled.div`
-    background: #ffffff14;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 200px;
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
   `;
 
   const DateHeader = styled.div`
@@ -406,6 +464,16 @@ const GuestBookingPage = () => {
     margin: 2rem auto 1rem auto;
     padding: 1.2rem;
     font-size: 1.2rem;
+
+    @media (max-width: 768px) {
+      width: calc(100% - 2rem);
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      margin: 0;
+      width: calc(50% - 1.5rem);
+      z-index: 10;
+    }
   `;
 
   const NoAvailabilityMessage = styled.div`

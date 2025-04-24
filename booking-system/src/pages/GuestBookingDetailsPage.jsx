@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PageTransition from "../components/PageTransition";
+import { Link } from "react-router-dom";
 
 const GuestBookingDetailsPage = () => {
   const location = useLocation();
@@ -30,6 +31,10 @@ const GuestBookingDetailsPage = () => {
         selectedTime,
       },
     });
+  };
+
+  const handleBack = () => {
+    navigate('/guest-booking');
   };
 
   return (
@@ -83,7 +88,7 @@ const GuestBookingDetailsPage = () => {
               </BookingDetails>
 
               <ButtonContainer>
-                <BackButton onClick={() => navigate(-1)}>Back</BackButton>
+                <BackButton onClick={handleBack}>Back</BackButton>
                 <SubmitButton type="submit">Continue</SubmitButton>
               </ButtonContainer>
             </Form>
@@ -226,40 +231,71 @@ const DetailText = styled.p`
 
 const ButtonContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+`;
+
+const BackButton = styled.button`
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0.5;
+  width: 150px;
+  text-align: center;
+  padding: 0.8rem 1.5rem;
+
+  &:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    opacity: 0.8;
+  }
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    width: calc(50% - 1.5rem);
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 1rem;
+    transform: none;
+
+    &:hover {
+      transform: translateY(-2px);
+      background-color: #45a049;
+    }
   }
 `;
 
-const BaseButton = styled.button`
-  padding: 1rem;
+const SubmitButton = styled.button`
+  flex: 2;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s;
-  flex: 1;
+  transition: all 0.3s ease;
 
   &:hover {
+    background-color: #45a049;
     transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) {
-    width: 100%;
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
   }
-`;
 
-const BackButton = styled(BaseButton)`
-  background-color: #4caf50;
-  color: white;
-`;
-
-const SubmitButton = styled(BaseButton)`
-  background-color: #4caf50;
-  color: white;
+  @media (max-width: 768px) {
+    width: calc(50% - 1.5rem);
+  }
 `;
 
 export default GuestBookingDetailsPage; 
