@@ -198,6 +198,7 @@ const TimeSlot = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   opacity: ${props => props.disabled ? 0.5 : 1};
+  font-weight: 600;
 
   &:hover:not(:disabled) {
     border-color: #4caf50;
@@ -207,6 +208,11 @@ const TimeSlot = styled.button`
   &:disabled {
     cursor: not-allowed;
     transform: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -272,6 +278,12 @@ const TimeSlotContainer = styled.div`
   background-color: #2a2a2a;
   padding: 1.5rem;
   border-radius: 12px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    padding: 1rem;
+    gap: 0.6rem;
+  }
 `;
 
 const BookingDetailsCard = styled.div`
@@ -279,6 +291,10 @@ const BookingDetailsCard = styled.div`
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const DateHeader = styled.h2`
@@ -363,24 +379,77 @@ const CalendarContainer = styled.div`
   background-color: #2a2a2a;
   border-radius: 12px;
   padding: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 
   .react-calendar {
     width: 100%;
     background-color: #2a2a2a;
     border: none;
     color: white;
+    font-family: inherit;
+    line-height: 1.5;
+    padding: 1rem;
+
+    abbr {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .react-calendar__navigation {
+      height: 48px;
+      margin-bottom: 1rem;
+
+      button {
+        min-width: 48px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background: none;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background-color: #333;
+        }
+
+        &[disabled] {
+          background-color: transparent;
+          color: #666;
+        }
+      }
+    }
+
+    .react-calendar__month-view__weekdays {
+      color: #4caf50;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      abbr {
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+    }
 
     .react-calendar__tile {
+      height: 48px;
+      font-size: 1.1rem;
+      font-weight: 600;
       color: white;
+      padding: 1rem 0.5rem;
+
       &:enabled:hover,
       &:enabled:focus {
         background-color: #4caf50;
       }
       &--active {
-        background-color: #4caf50;
+        background-color: #4caf50 !important;
+        font-weight: bold;
       }
       &--now {
         background-color: #333;
+        font-weight: bold;
       }
       &:disabled {
         background-color: #1a1a1a;
@@ -388,20 +457,41 @@ const CalendarContainer = styled.div`
       }
     }
 
-    .react-calendar__navigation button {
-      color: white;
-      &:enabled:hover,
-      &:enabled:focus {
-        background-color: #333;
+    @media (max-width: 768px) {
+      padding: 0.5rem;
+
+      .react-calendar__navigation {
+        height: 40px;
+        
+        button {
+          font-size: 1rem;
+          min-width: 40px;
+        }
+      }
+
+      .react-calendar__month-view__weekdays {
+        font-size: 0.9rem;
+
+        abbr {
+          font-size: 0.8rem;
+        }
+      }
+
+      .react-calendar__tile {
+        height: 40px;
+        font-size: 1rem;
+        padding: 0.8rem 0.4rem;
       }
     }
 
-    .react-calendar__month-view__weekdays {
-      color: #4caf50;
+    @media (max-width: 480px) {
+      .react-calendar__tile {
+        height: 36px;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.3rem;
+      }
     }
   }
 `;
-
-
 
 export default LoginUserBookingPage;

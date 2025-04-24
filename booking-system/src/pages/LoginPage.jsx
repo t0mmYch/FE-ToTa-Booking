@@ -5,6 +5,7 @@ import PageTransition from "../components/PageTransition";
 
 
 const LoginPage = () => {
+  console.log("LoginPage rendering...");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,19 +13,22 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
    
-    navigate("/booking")
+  
     navigate('/login-user-booking', {
       state: {
         username: email.split('@')[0], //Use the part before @ as username
         email: email
       }
     });
+
   };
+
 
   const slideUp = keyframes`
   0% {
     transform: translateY(20px);
     opacity: 0;
+    
   }
   100% {
     transform: translateY(0);
