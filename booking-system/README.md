@@ -1,6 +1,6 @@
 # ToTa Booking - Booking System
 
-![ToTa Booking Logo](public/logo.png)
+![ToTa Booking Logo](public/ToTaLogo.png)
 
 A sleek, modern, and user-friendly booking system designed specifically for hair salons. ToTa Booking provides an intuitive interface for customers to book appointments with their favorite barbers, featuring smooth animations, responsive design, and a seamless user experience.
 
