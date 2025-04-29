@@ -1,70 +1,125 @@
-# FE-ToTa-Booking
+# ToTa Booking - Booking System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![ToTa Booking Logo](public/logo.png)
 
-## Available Scripts
+A sleek, modern, and user-friendly booking system designed specifically for hair salons. ToTa Booking provides an intuitive interface for customers to book appointments with their favorite barbers, featuring smooth animations, responsive design, and a seamless user experience.
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- **Modern UI/UX Design**
+  - Clean, intuitive interface
+  - Smooth animations and transitions
+  - Responsive layout for all devices
+  - Dark mode theme
 
-Runs the app in the development mode.\
-Open [http://localhost:3000] to view it in your browser.
+- **Booking System**
+  - Guest booking option
+  - User account management
+  - Real-time availability checking
+  - Calendar integration
+  - Time slot selection
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **User Experience**
+  - Interactive calendar
+  - Dynamic time slot selection
+  - Form validation
+  - Progress tracking
+  - Booking confirmation
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js (v14 or higher)
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
+```bash
+git clone https://github.com/t0mmYch/FE-ToTa-Booking.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
+```bash
+cd tota-booking
+```
 
-### `npm run eject`
+3. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the development server:
+```bash
+npm start
+# or
+yarn start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application will be available at `http://localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📱 Application Flow
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Landing Page**
+   - Welcome screen with booking options
+   - Guest booking or user login
+   - Sign up for new users
 
-## Learn More
+2. **Booking Process**
+   - Date selection with interactive calendar
+   - Time slot availability
+   - Service selection
+   - Guest/user details form
+   - Booking confirmation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **User Features**
+   - Account creation
+   - Login/Logout
+   - Booking history
+   - Profile management
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠️ Tech Stack
 
-### Code Splitting
+- **Frontend**
+  - React.js
+  - Styled Components
+  - React Router
+  - React Calendar
+  - date-fns
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Styling**
+  - CSS-in-JS
+  - Custom animations
+  - Responsive design
+  - Modern UI components
 
-### Analyzing the Bundle Size
+## 🎨 Design Philosophy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ToTa Booking follows a modern design philosophy with:
+- Clean, minimalist interface
+- Smooth transitions and animations
+- Consistent color scheme
+- Intuitive navigation
+- Mobile-first approach
 
-### Making a Progressive Web App
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+We welcome contributions! Please feel free to submit a Pull Request.
 
-### Advanced Configuration
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 👥 Authors
 
-### `npm run build` fails to minify
+- **Thomai Christopoulou** - *Initial work* - https://github.com/t0mmYch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+

@@ -43,12 +43,17 @@ const LoginUserBookingPage = () => {
   };
 
   const handleContinue = () => {
-    if (selectedDate && selectedTime && !isSunday(selectedDate) && !isTimeSlotDisabled(selectedTime)) {
+    if (
+      selectedDate &&
+      selectedTime &&
+      !isSunday(selectedDate) &&
+      !isTimeSlotDisabled(selectedTime)
+    ) {
       navigate("/booking-confirmation", {
         state: {
           selectedDate,
           selectedTime,
-          username
+          username,
         },
       });
     }
@@ -59,9 +64,22 @@ const LoginUserBookingPage = () => {
   };
 
   const timeSlots = [
-    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-    "15:00", "15:30", "16:00", "16:30"
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
   ];
 
   return (
@@ -102,7 +120,13 @@ const LoginUserBookingPage = () => {
                 <NoAvailabilityMessage>
                   CLOSED ON SUNDAYS
                   <br />
-                  <span style={{ fontSize: "0.9em", display: "block", marginTop: "8px" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9em",
+                      display: "block",
+                      marginTop: "8px",
+                    }}
+                  >
                     Please select any other day to book your appointment
                   </span>
                 </NoAvailabilityMessage>
@@ -124,31 +148,36 @@ const LoginUserBookingPage = () => {
                 </TimeSlotContainer>
               )}
 
-              {selectedDate && selectedTime && !isSunday(selectedDate) && !isTimeSlotDisabled(selectedTime) && (
-                <BookingDetailsCard>
-                  <DateHeader>
-                    {format(selectedDate, "EEEE, do 'of' MMMM")}
-                  </DateHeader>
-                  <DetailsContent>
-                    <DetailsSection>
-                      <DetailRow>
-                        <span>Time: {selectedTime}</span>
-                        <Checkbox
-                          checked={isTimeConfirmed}
-                          onChange={handleTimeConfirm}
-                          aria-label="Confirm time selection"
-                        />
-                      </DetailRow>
-                    </DetailsSection>
-                    <ContinueButton
-                      onClick={handleContinue}
-                      disabled={!selectedDate || !selectedTime || !isTimeConfirmed}
-                    >
-                      Continue
-                    </ContinueButton>
-                  </DetailsContent>
-                </BookingDetailsCard>
-              )}
+              {selectedDate &&
+                selectedTime &&
+                !isSunday(selectedDate) &&
+                !isTimeSlotDisabled(selectedTime) && (
+                  <BookingDetailsCard>
+                    <DateHeader>
+                      {format(selectedDate, "EEEE, do 'of' MMMM")}
+                    </DateHeader>
+                    <DetailsContent>
+                      <DetailsSection>
+                        <DetailRow>
+                          <span>Time: {selectedTime}</span>
+                          <Checkbox
+                            checked={isTimeConfirmed}
+                            onChange={handleTimeConfirm}
+                            aria-label="Confirm time selection"
+                          />
+                        </DetailRow>
+                      </DetailsSection>
+                      <ContinueButton
+                        onClick={handleContinue}
+                        disabled={
+                          !selectedDate || !selectedTime || !isTimeConfirmed
+                        }
+                      >
+                        Continue
+                      </ContinueButton>
+                    </DetailsContent>
+                  </BookingDetailsCard>
+                )}
             </RightSection>
           </MainContent>
         </ContentContainer>
@@ -192,12 +221,12 @@ const SearchInput = styled.input`
 const TimeSlot = styled.button`
   padding: 0.8rem;
   border-radius: 6px;
-  border: 1px solid ${props => props.selected ? '#4caf50' : '#333'};
-  background-color: ${props => props.selected ? '#4caf50' : 'transparent'};
+  border: 1px solid ${(props) => (props.selected ? "#4caf50" : "#333")};
+  background-color: ${(props) => (props.selected ? "#4caf50" : "transparent")};
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
-  opacity: ${props => props.disabled ? 0.5 : 1};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   font-weight: 600;
 
   &:hover:not(:disabled) {
@@ -321,7 +350,7 @@ const DetailRow = styled.div`
   align-items: center;
 `;
 
-const Checkbox = styled.input.attrs({ type: 'checkbox' })`
+const Checkbox = styled.input.attrs({ type: "checkbox" })`
   appearance: none;
   width: 1.2rem;
   height: 1.2rem;
@@ -334,7 +363,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   &:checked {
     background-color: #4caf50;
     &:after {
-      content: '✓';
+      content: "✓";
       color: white;
       position: absolute;
       top: 50%;
@@ -462,7 +491,7 @@ const CalendarContainer = styled.div`
 
       .react-calendar__navigation {
         height: 40px;
-        
+
         button {
           font-size: 1rem;
           min-width: 40px;
