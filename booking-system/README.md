@@ -7,12 +7,14 @@ A sleek, modern, and user-friendly booking system designed specifically for hair
 ## ✨ Features
 
 - **Modern UI/UX Design**
+
   - Clean, intuitive interface
   - Smooth animations and transitions
   - Responsive layout for all devices
   - Dark mode theme
 
 - **Booking System**
+
   - Guest booking option
   - User account management
   - Real-time availability checking
@@ -36,16 +38,19 @@ A sleek, modern, and user-friendly booking system designed specifically for hair
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/t0mmYch/FE-ToTa-Booking.git
 ```
 
 2. Navigate to the project directory:
+
 ```bash
 cd tota-booking
 ```
 
 3. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -53,6 +58,7 @@ yarn install
 ```
 
 4. Start the development server:
+
 ```bash
 npm start
 # or
@@ -64,11 +70,13 @@ The application will be available at `http://localhost:3000`
 ## 📱 Application Flow
 
 1. **Landing Page**
+
    - Welcome screen with booking options
    - Guest booking or user login
    - Sign up for new users
 
 2. **Booking Process**
+
    - Date selection with interactive calendar
    - Time slot availability
    - Service selection
@@ -84,6 +92,7 @@ The application will be available at `http://localhost:3000`
 ## 🛠️ Tech Stack
 
 - **Frontend**
+
   - React.js
   - Styled Components
   - React Router
@@ -99,6 +108,7 @@ The application will be available at `http://localhost:3000`
 ## 🎨 Design Philosophy
 
 ToTa Booking follows a modern design philosophy with:
+
 - Clean, minimalist interface
 - Smooth transitions and animations
 - Consistent color scheme
@@ -115,11 +125,6 @@ We welcome contributions! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 ## 👥 Authors
 
-- **Thomai Christopoulou** - *Initial work* - https://github.com/t0mmYch
-
-
-
+- **Thomai Christopoulou** - _Initial work_ - https://github.com/t0mmYch
