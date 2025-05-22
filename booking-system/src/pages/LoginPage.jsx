@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import PageTransition from "../components/PageTransition";
 
-
 const LoginPage = () => {
   console.log("LoginPage rendering...");
   const navigate = useNavigate();
@@ -12,17 +11,14 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-   
-  
-    navigate('/login-user-booking', {
+
+    navigate("/login-user-booking", {
       state: {
-        username: email.split('@')[0], //Use the part before @ as username
-        email: email
-      }
+        username: email.split("@")[0], //Use the part before @ as username
+        email: email,
+      },
     });
-
   };
-
 
   const slideUp = keyframes`
   0% {
